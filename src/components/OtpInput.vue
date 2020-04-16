@@ -10,6 +10,7 @@
       :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
       :is-input-num="isInputNum"
+      :hide="hide"
       @on-change="handleOnChange"
       @on-keydown="handleOnKeyDown"
       @on-paste="handleOnPaste"
@@ -48,6 +49,10 @@ export default {
       type: Boolean,
     },
     shouldAutoFocus: {
+      type: Boolean,
+      default: false,
+    },
+    hide: {
       type: Boolean,
       default: false,
     },
@@ -116,7 +121,7 @@ export default {
       this.focusNextInput();
     },
     clearInput() {
-      if(this.otp.length > 0) {
+      if (this.otp.length > 0) {
         this.$emit('on-change', '');
       }
       this.otp = [];

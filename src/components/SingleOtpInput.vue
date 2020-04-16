@@ -2,7 +2,7 @@
   <div style="display: flex; align-items: center;">
     <input
       :class="inputClasses"
-      :type="isInputNum ? 'number' : 'tel'"
+      :type="selectType()"
       min="0"
       max="9"
       ref="input"
@@ -44,6 +44,9 @@ export default {
     isLastChild: {
       type: Boolean,
     },
+    hide: {
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -72,6 +75,12 @@ export default {
     },
   },
   methods: {
+    selectType() {
+      if (this.hide) {
+        return 'password';
+      }
+      return this.isInputNum ? 'number' : 'tel';
+    },
     handleOnChange() {
       if (this.model.length > 1) {
         this.model = this.model.slice(0, 1);
@@ -93,7 +102,7 @@ export default {
     },
     isCodeNumeric(charCode) {
       // numeric keys and numpad keys
-      return (charCode >= 48 && charCode <= 57) || (key >= 96 && key <= 105)
+      return (charCode >= 48 && charCode <= 57) || (this.key >= 96 && this.key <= 105);
     },
     handleOnPaste(event) {
       return this.$emit('on-paste', event);
