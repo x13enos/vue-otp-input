@@ -102,7 +102,7 @@ export default {
     },
     isCodeNumeric(charCode) {
       // numeric keys and numpad keys
-      return (charCode >= 48 && charCode <= 57) || (this.key >= 96 && this.key <= 105);
+      return (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105);
     },
     handleOnPaste(event) {
       return this.$emit('on-paste', event);
